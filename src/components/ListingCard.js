@@ -1,11 +1,25 @@
 import React from "react";
 
-function ListingCard() {
+function ListingCard({image}) {
+
+  const imageDescription = image.map((eachImage) => {    
+    return(eachImage.description)
+  })
+
+  const imageLocation = image.map((eachImage) => {    
+    return(eachImage.location)
+  })
+
+  const imageImage = image.map((eachImage) => {    
+    return(eachImage.image)
+  })
+
+
   return (
     <li className="card">
       <div className="image">
         <span className="price">$0</span>
-        <img src={"https://via.placeholder.com/300x300"} alt={"description"} />
+        <img src={imageImage} alt={"description"} />
       </div>
       <div className="details">
         {true ? (
@@ -13,12 +27,14 @@ function ListingCard() {
         ) : (
           <button className="emoji-button favorite">☆</button>
         )}
-        <strong>{"description"}</strong>
-        <span> · {"location"}</span>
+        <strong>{imageDescription}</strong>
+        <span> · {imageLocation}</span>
         <button className="emoji-button delete">🗑</button>
       </div>
     </li>
+    
   );
 }
+
 
 export default ListingCard;

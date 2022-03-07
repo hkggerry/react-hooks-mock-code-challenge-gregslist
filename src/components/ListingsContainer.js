@@ -1,11 +1,24 @@
-import React from "react";
-// import ListingCard from "./ListingCard";
+import React, {useEffect, useState}from "react";
+import ListingCard from "./ListingCard";
+
+const api = "http://localhost:6001/listings"
 
 function ListingsContainer() {
+  const [image, setImage] = useState([])  
+  console.log(image)
+
+  useEffect(() => {
+    fetch(api)
+      .then(res => res.json())
+      .then(images => setImage(images))
+}, []) 
+
+
   return (
     <main>
       <ul className="cards">
-        {/* use the ListingCard component to display listings */}
+        <ListingCard image={image}/>
+        
       </ul>
     </main>
   );
