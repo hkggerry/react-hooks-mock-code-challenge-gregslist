@@ -1,24 +1,18 @@
-import React, {useEffect, useState}from "react";
+import React from "react";
 import ListingCard from "./ListingCard";
 
-const api = "http://localhost:6001/listings"
 
-function ListingsContainer() {
-  const [image, setImage] = useState([])  
-  console.log(image)
+function ListingsContainer({ image }) {
 
-  useEffect(() => {
-    fetch(api)
-      .then(res => res.json())
-      .then(images => setImage(images))
-}, []) 
-
+  const imageData = image.map((eachImage) => {  
+  return <ListingCard key={eachImage.id} image={eachImage} />
+  })
 
   return (
     <main>
+
       <ul className="cards">
-        <ListingCard image={image}/>
-        
+        {imageData}
       </ul>
     </main>
   );

@@ -1,34 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 
 function ListingCard({image}) {
-
-  const imageDescription = image.map((eachImage) => {    
-    return(eachImage.description)
-  })
-
-  const imageLocation = image.map((eachImage) => {    
-    return(eachImage.location)
-  })
-
-  const imageImage = image.map((eachImage) => {    
-    return(eachImage.image)
-  })
-
+  const [isClicked, setIsClicked] = useState(false)
+  
+  function handleClick(){
+      setIsClicked ((isClicked) => !isClicked);
+  }
 
   return (
     <li className="card">
       <div className="image">
         <span className="price">$0</span>
-        <img src={imageImage} alt={"description"} />
+        <img src={image.image} alt={"description"} />
       </div>
-      <div className="details">
-        {true ? (
+      <div className="details" >
+        {/* {true ? (
           <button className="emoji-button favorite active">★</button>
         ) : (
           <button className="emoji-button favorite">☆</button>
-        )}
-        <strong>{imageDescription}</strong>
-        <span> · {imageLocation}</span>
+        )} */}
+        <button onClick={handleClick}>{isClicked ? '★' : '☆'}</button>
+        <strong>{image.description}</strong>
+        <span> · {image.location}</span>
         <button className="emoji-button delete">🗑</button>
       </div>
     </li>
